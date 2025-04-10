@@ -72,46 +72,38 @@ forum est rajouté a sa liste de forums.
 
 ## Classe BD
 
-Une classe **BD** (Base de Données) vous sera fournie  pour gérer
-l'enregistrement et la récupération des données dans des fichiers JSON. Cette
-classe ne contient pour l'instant que des méthodes "bidon", et qui seront
-remplacés par une implémentation logique dans les semaines à venir. Cette
-classe contiendra des méthodes pour :
+La classe **BD** (Base de Données) représente la base de données de
+l'application. À terme, les données seront stockées dans des fichiers
+JSON et CSV. Mais pour l'instant, dans le **MVP**, la base de données
+retient les informations en mémoire.
 
-- Sauvegarder un forum, une publication ou un commentaire
-- Gérer l'ajout des utilisateurs aux forums
-- Récupérer des objets enregistrés à partir d'un attribut
+Une partie de la classe **BD** est déjà implémentée dans le fichier
+`src/pyforum/bd.py`. Dans cette première étape, vous devez compléter
+les fonctions existantes.
 
-Les différentes méthodes de la classe BD sont documentées dans le fichier
-`src/pyforum/bd.py`. La plupart acceptent des objets de type `Forum`,
-`Utilisateur`, etc. en paramètre. Dans le cadre du MVP, ces objets
-doivent surcharger la méthode `__str__` pour permettre l'affichage des objets
-dans le terminal. 
-
-L'instance unique de la classe BD est créée dans le fichier `mvp.py` et doit être transmise explicitement à chaque objet (Utilisateur, Forum, Publication, Commentaire, etc.) lors de leur création. Cette approche, appelée injection de dépendance, permet de centraliser la gestion des données et de garantir que tous les objets partagent la même instance de la base de données.
+Notez que c'est le rôle de la classe **BD** de gérer les identifiants
+uniques. Ainsi, pour créer par exemple un utilisateur, vous fournirez à la
+classe **BD** les champs nécessaires et c'est elle qui se chargera de
+générer l'identifiant unique. Autrement dit, c'est la base de donnée qui 
+vous retourne un objet `Utilisateur` et non l'inverse.
 
 ## Fichier main.py - Description et utilisation
 
-Le fichier `__main__.py` représente
-l'interface principale de l'application PyForum, permettant de simuler le
-fonctionnement de base de l'application à travers un menu interactif dans le
-terminal. Ce fichier contient une boucle principale qui affiche un menu et
-permet à l'utilisateur de choisir une action parmi plusieurs options
-disponibles. Vous devrez rajouter du code à ce fichier afin d'utiliser les
-classes et méthodes que vous avez créés.
+Le fichier `__main__.py` représente l'interface principale de l'application
+PyForum, permettant de simuler le fonctionnement de base de l'application à
+travers un menu interactif dans le terminal.
 
-## Astuces
-
-- Pour gérer les identifiants uniques, il est recommandé d'utiliser des
-  attributs de classe, qui enregistre le dernier identifiant unique utilisé, et
-  qui s'incrémente à chaque création.
+Ce fichier contient une boucle principale qui affiche un menu et permet à
+l'utilisateur de choisir une action parmi plusieurs options disponibles. Vous
+devrez rajouter du code à ce fichier afin d'utiliser les classes et méthodes
+que vous avez créés.
 
 ## À vous de jouer !
 
 ## Étape 1 : Diagramme UML
 
 Vous devez commencer par créer des diagramme UML pour modéliser le MVP. Le
-fichier [02_Mermaid.md](./02_Mermaid.md) contient une introduction à la syntaxe
+fichier [Mermaid.md](./Mermaid.md) contient une introduction à la syntaxe
 Mermaid pour créer des diagrammes UML.
 
 Créez les diagrammes dans le fichier `src/pyforum/UML/mvp.md`.
@@ -143,13 +135,15 @@ créé. Faite un fichier par classe.
 
 Astuces:
 - N'oubliez pas d'implémenter la méthode `__str__` pour chacune des classes pour permettre leur affichage à l'écran.
-- Assurez-vous de faire les appels aux méthodes de la BD aux endroits appropriés.
 
-## Étape 3 : Compléter le fichier MVP
+## Étape 3 : Compléter le fichier MVP et la classe BD
 
-Complétez le fichier `src/pyforum/mvp.py` pour permettre à l'utilisateur
-d'interagir avec l'application. La partie à compléter est indiquée par des
-commentaires `TODO` dans la fonction `main()`.
+Complétez le fichier `src/pyforum/mvp.py` et `src/pyforum/bd.py` pour permettre
+à l'utilisateur d'interagir avec l'application. La partie à compléter est
+indiquée par des commentaires `TODO` dans la fonction `main()` et dans la
+la clasee `BD`.
+
+Le cas de l'utilisateur est presque complet. Vous pouvez vous en inspirer.
 
 
 > [!NOTE]

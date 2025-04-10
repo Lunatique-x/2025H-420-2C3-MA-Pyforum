@@ -1,58 +1,72 @@
+from pyforum.utilisateur import Utilisateur
+
+
 class BD:
     def __init__(self):
-        self.utilisateurs = []
+        self.utilisateurs: list[Utilisateur] = []
         self.forums = []
         self.publications = []
         self.commentaires = []
         self.utilisateurs_forums = {}
         print("Base de données initialisée.")
     
-    def sauvegarder_utilisateur(self, utilisateur):
-        for i, existing_user in enumerate(self.utilisateurs):
-            if existing_user.id == utilisateur.id:
-                self.utilisateurs[i] = utilisateur  # Mise à jour de l'utilisateur existant
-                print(f"[Simulé] Mise à jour de l'utilisateur: {utilisateur}")
-                return
-        self.utilisateurs.append(utilisateur)  # Ajout de l'utilisateur s'il n'existe pas
-        print(f"[Simulé] Sauvegarde de l'utilisateur: {utilisateur}")
+    def creer_utilisateur(self, username: str) -> Utilisateur:
+        #                       ^^^^^^^^^^^^^^
+        #            # TODO:    Vous devez ajouter les autres paramètres requis
+
+        # Vérifier si l'utilisateur existe déjà
+        if username in [u.username for u in self.utilisateurs]:
+            print(f"[Simulé] L'utilisateur {username} existe déjà.")
+            return
+
+        # Créer un nouvel identifiant pour l'utilisateur
+        new_id = max([u.id for u in self.utilisateurs], default=0) + 1
+
+        # Instancier un nouvel utilisateur et l'ajouter à la liste
+        u = Utilisateur(new_id, username)
+        self.utilisateurs.append(u)
+        print(f"[Simulé] Sauvegarde de l'utilisateur: {u}")
+
+        # Retourner l'utilisateur créé
+        return u
     
-    def sauvegarder_forum(self, forum):
-        for i, existing_forum in enumerate(self.forums):
-            if existing_forum.id == forum.id:
-                self.forums[i] = forum  # Mise à jour du forum existant
-                print(f"[Simulé] Mise à jour du forum: {forum}")
-                return
-        self.forums.append(forum)  # Ajout du forum s'il n'existe pas
-        print(f"[Simulé] Sauvegarde du forum: {forum}")
+    def obtenir_utilisateur_par_nom(self, nom_utilisateur: str):
+        for u in self.utilisateurs:
+            if u.username == nom_utilisateur:
+                return u
 
-    def sauvegarder_publication(self, publication):
-        for i, existing_publication in enumerate(self.publications):
-            if existing_publication.id == publication.id:
-                self.publications[i] = publication  # Mise à jour de la publication existante
-                print(f"[Simulé] Mise à jour de la publication: {publication}")
-                return
-        self.publications.append(publication)  # Ajout de la publication si elle n'existe pas
-        print(f"[Simulé] Sauvegarde de la publication: {publication}")
+    def creer_forum(self, nom):
+        #                ^^^^^^
+        #                Vous devez ajouter les autres paramètres requis
+        # TODO: Implanter la logique pour créer un forum
+        pass
 
-    def sauvegarder_commentaire(self, commentaire):
-        for i, existing_commentaire in enumerate(self.commentaires):
-            if existing_commentaire.id == commentaire.id:
-                self.commentaires[i] = commentaire  # Mise à jour du commentaire existant
-                print(f"[Simulé] Mise à jour du commentaire: {commentaire}")
-                return
-        self.commentaires.append(commentaire)  # Ajout du commentaire s'il n'existe pas
-        print(f"[Simulé] Sauvegarde du commentaire: {commentaire}")
+    def creer_publication(self, publication):
+        #                       ^^^^^^^^^^^
+        #                       Vous devez ajouter les autres paramètres requis
+        # TODO: Implanter la logique pour créer une publication
+        pass
+
+    def creer_commentaire(self, commentaire):
+        #                       ^^^^^^^^^^^
+        #                       Vous devez ajouter les autres paramètres requis
+        # TODO: Implanter la logique pour créer un commentaire
+        pass
 
     def obtenir_forum_par_nom(self, nom_forum):
-        return next((forum for forum in self.forums if forum.nom == nom_forum), None)
-    
-    def obtenir_utilisateur_par_nom(self, nom_utilisateur):
-        return next((utilisateur for utilisateur in self.utilisateurs if utilisateur.nom == nom_utilisateur), None)
+        # TODO: Implanter la logique pour chercher un forum à partir de son nom
+        pass
     
     def obtenir_publication_par_titre(self, titre_publication):
-        return next((publication for publication in self.publications if publication.titre == titre_publication), None)
+        # TODO: Implanter la logique pour chercher une publication à partir de son titre
+        pass
 
-     
+    def mettre_a_jour_forum(self, forum):
+        #                         ^^^^^^
+        #                         Vous devez ajouter les autres paramètres requis
+        # TODO: Implanter la logique pour mettre à jour le forum et retourner le forum mis à jour
+        pass
+
 
 
     

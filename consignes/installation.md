@@ -3,13 +3,7 @@
 
 ## Cloner le dépôt
 
-Vous pouvez cloner ce dépôt en utilisant la commande suivante :
-
-```bash
-git clone https://github.com/archambaultv-prof/2025H-420-2C3-MA-Pyforum
-```
-
-Ceci créera un dossier `2025H-420-2C3-MA-Pyforum` dans le répertoire courant.
+Suivez les [instructions git](../tutos_git/README.md) pour configurer votre espace de travail.
 
 ## Créer un environnement virtuel
 
