@@ -1,5 +1,5 @@
 from pyforum.utilisateur import Utilisateur
-
+from pyforum.Forum import Forum
 
 class BD:
     def __init__(self):
@@ -10,9 +10,9 @@ class BD:
         self.utilisateurs_forums = {}
         print("Base de données initialisée.")
     
-    def creer_utilisateur(self, username: str) -> Utilisateur:
-        #                       ^^^^^^^^^^^^^^
-        #            # TODO:    Vous devez ajouter les autres paramètres requis
+    def creer_utilisateur(self, username: str, email, mdp) -> Utilisateur:
+        #                     ^^^^^^^^^^^^^^
+        #TODO:    Vous devez ajouter les autres paramètres requis
 
         # Vérifier si l'utilisateur existe déjà
         if username in [u.username for u in self.utilisateurs]:
@@ -23,7 +23,7 @@ class BD:
         new_id = max([u.id for u in self.utilisateurs], default=0) + 1
 
         # Instancier un nouvel utilisateur et l'ajouter à la liste
-        u = Utilisateur(new_id, username)
+        u = Utilisateur(new_id, username, email, mdp) 
         self.utilisateurs.append(u)
         print(f"[Simulé] Sauvegarde de l'utilisateur: {u}")
 
@@ -35,8 +35,12 @@ class BD:
             if u.username == nom_utilisateur:
                 return u
 
-    def creer_forum(self, nom):
-        #                ^^^^^^
+    def creer_forum(self, nom, description = "") -> Forum:
+
+        if nom in [f.name for f in self.forums]:
+            print(f"Le forum {nom} existe déja")
+
+        new_id = len([l.id for l in self.forums] + 1)
         #                Vous devez ajouter les autres paramètres requis
         # TODO: Implanter la logique pour créer un forum
         pass
