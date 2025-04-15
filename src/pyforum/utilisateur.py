@@ -1,6 +1,6 @@
 class Utilisateur:
-    def __init__(self, nom, email, mdp):
-        self.__id = 1
+    def __init__(self, id,nom, email, mdp):
+        self.__id = id
         self.__nom = nom
         self.__email = email
         self.__mdp = mdp

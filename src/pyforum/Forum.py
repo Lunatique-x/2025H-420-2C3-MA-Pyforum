@@ -3,4 +3,5 @@ class Forum:
         self.__id = id
         self.__nom = nom
         self.__description = description
+        self.__publication = []
         

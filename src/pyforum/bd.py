@@ -1,5 +1,7 @@
-from pyforum.utilisateur import Utilisateur
+from pyforum.Utilisateur import Utilisateur
 from pyforum.Forum import Forum
+from pyforum.Publication import Publication
+
 
 class BD:
     def __init__(self):
@@ -40,15 +42,27 @@ class BD:
         if nom in [f.name for f in self.forums]:
             print(f"Le forum {nom} existe déja")
 
+        # Création d'un nouvel id
         new_id = len([l.id for l in self.forums] + 1)
-        #                Vous devez ajouter les autres paramètres requis
+
         # TODO: Implanter la logique pour créer un forum
+        u = Forum(nom, description = "")
+        self.forums.append(u)
+        print(f"Votre Forum {nom} à été crée")
         pass
 
-    def creer_publication(self, publication):
-        #                       ^^^^^^^^^^^
-        #                       Vous devez ajouter les autres paramètres requis
+    def creer_publication(self, titre, contenue):
+        #Création d'un nouvel id
+        new_id = max([u.id for u in self.publications], default= 0) + 1
+
+        # Ne pas avoir deux Publications avec le même nom sur le même Forum
+        if titre in [f.titre for f in Forum.__publication]:
+            good_title = titre 
+
         # TODO: Implanter la logique pour créer une publication
+        u = Publication(titre, contenue)
+        self.publications.append(u)
+        print(f"Votre Publication est en ligne")
         pass
 
     def creer_commentaire(self, commentaire):
